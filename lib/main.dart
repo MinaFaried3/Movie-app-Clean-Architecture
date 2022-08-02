@@ -10,7 +10,7 @@ void main() {
       genreIds: const [2],
       overview: "overview",
       voteAverage: 3.5,
-      releaseDate: 2.3);
+      releaseDate: "2.3");
   Movie movie1 = const Movie(
       id: 2,
       title: "title",
@@ -18,7 +18,7 @@ void main() {
       genreIds: const [2],
       overview: "overview",
       voteAverage: 3.5,
-      releaseDate: 2.3);
+      releaseDate: "2.3");
 
   if (kDebugMode) {
     print(movie == movie1);
