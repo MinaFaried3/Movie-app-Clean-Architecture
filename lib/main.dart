@@ -1,8 +1,11 @@
+import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_app_project/core/services/service_locator.dart';
 import 'package:movie_app_project/movies/domain/entities/movie.dart';
 import 'package:movie_app_project/movies/presentation/screens/movies_screen.dart';
+
+import 'core/utils/constants/bloc_observer.dart';
 
 void main() {
   Movie movie = const Movie(
@@ -28,7 +31,12 @@ void main() {
     // print(movie1.hashCode);
   }
   ServiceLocator().init();
-  runApp(const MyApp());
+  BlocOverrides.runZoned(
+    () async {
+      runApp(const MyApp());
+    },
+    blocObserver: MyBlocObserver(),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -37,6 +45,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
