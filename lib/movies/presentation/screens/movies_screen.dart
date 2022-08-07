@@ -22,7 +22,6 @@ class MainMoviesScreen extends StatelessWidget {
         ..add(GetPopularMoviesEvent())
         ..add(GetTopRatedMoviesEvent()),
       child: Scaffold(
-        backgroundColor: Colors.grey[900],
         body: DefaultTextStyle(
           style: const TextStyle(color: Colors.white),
           child: SingleChildScrollView(
