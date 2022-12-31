@@ -244,34 +244,39 @@ class MovieDetailContent extends StatelessWidget {
         return SliverGrid(
           delegate: SliverChildBuilderDelegate(
             (context, index) {
-              final recommendation = state.recommendations[index];
-              return FadeInUp(
-                from: 20,
-                duration: const Duration(milliseconds: 500),
-                child: ClipRRect(
-                  borderRadius: const BorderRadius.all(Radius.circular(4.0)),
-                  child: CachedNetworkImage(
-                    imageUrl:
-                        ApiConstance.imageUrl(recommendation.backdropPath!),
-                    placeholder: (context, url) => Shimmer.fromColors(
-                      baseColor: Colors.grey[850]!,
-                      highlightColor: Colors.grey[800]!,
-                      child: Container(
-                        height: 170.0,
-                        width: 120.0,
-                        decoration: BoxDecoration(
-                          color: Colors.black,
-                          borderRadius: BorderRadius.circular(8.0),
+              late final recommendation = state.recommendations[index];
+              return state.recommendations.isNotEmpty
+                  ? FadeInUp(
+                      from: 20,
+                      duration: const Duration(milliseconds: 500),
+                      child: ClipRRect(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(4.0)),
+                        child: CachedNetworkImage(
+                          imageUrl: ApiConstance.imageUrl(
+                              recommendation.backdropPath!),
+                          placeholder: (context, url) => Shimmer.fromColors(
+                            baseColor: Colors.grey[850]!,
+                            highlightColor: Colors.grey[800]!,
+                            child: Container(
+                              height: 170.0,
+                              width: 120.0,
+                              decoration: BoxDecoration(
+                                color: Colors.black,
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                            ),
+                          ),
+                          errorWidget: (context, url, error) =>
+                              const Icon(Icons.error),
+                          height: 180.0,
+                          fit: BoxFit.cover,
                         ),
                       ),
-                    ),
-                    errorWidget: (context, url, error) =>
-                        const Icon(Icons.error),
-                    height: 180.0,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              );
+                    )
+                  : const CircularProgressIndicator(
+                      color: Colors.grey,
+                    );
             },
             childCount: recommendationDummy.length,
           ),
