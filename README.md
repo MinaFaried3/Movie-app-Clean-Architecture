@@ -10,6 +10,7 @@ Movie app with Clean Architecture and Bloc
 
 
 ## Preview Video
+![preview](https://user-images.githubusercontent.com/103784652/210139968-b4c17bc4-9c60-4904-b346-051339990bb7.gif)
 
 
 
